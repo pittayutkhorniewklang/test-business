@@ -7,8 +7,11 @@ import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
-import { ProductComponent } from './product/product.component';
 import { AboutMeComponent } from './about-me/about-me.component';
+import { NewproductComponent } from './newproduct/newproduct.component';
+import { AllproductComponent } from './allproduct/allproduct.component';
+import { FormsModule } from '@angular/forms';
+import { ProductdetailComponent } from './productdetail/productdetail.component';
 
 @NgModule({
   declarations: [
@@ -17,12 +20,15 @@ import { AboutMeComponent } from './about-me/about-me.component';
     LoginComponent,
     RegisterComponent,
     ContactUsComponent,
-    ProductComponent,
-    AboutMeComponent
+    AboutMeComponent,
+    NewproductComponent,
+    AllproductComponent,
+    ProductdetailComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [
     provideClientHydration()
