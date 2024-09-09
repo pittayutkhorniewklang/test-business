@@ -35,6 +35,7 @@
   .navbar-text{
     color: white;
     font-weight: bold;
+    font-family: 'poppins','Kanit';
   }
   .justify-content-center{
     justify-content: center;

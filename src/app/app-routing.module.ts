@@ -7,6 +7,8 @@ import { ContactUsComponent } from './contact-us/contact-us.component';
 import { NewproductComponent } from './newproduct/newproduct.component';
 import { AllproductComponent } from './allproduct/allproduct.component';
 import { ProductdetailComponent } from './productdetail/productdetail.component';
+import { AboutusComponent } from './aboutus/aboutus.component';
+
 
 const routes: Routes = [
   {path:'', component: HomeComponent},
@@ -16,7 +18,8 @@ const routes: Routes = [
   {path:'contact-us',component:ContactUsComponent},
   {path:'newproduct',component:NewproductComponent},
   {path:'allproduct',component:AllproductComponent},
-  {path:'productdetail',component:ProductdetailComponent}
+  {path:'productdetail',component:ProductdetailComponent},
+  {path:'aboutus',component:AboutusComponent}
 ];
 
 @NgModule({

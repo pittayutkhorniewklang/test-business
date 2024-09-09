@@ -6,5 +6,9 @@ import { Component } from '@angular/core';
   styleUrl: './contact-us.component.css'
 })
 export class ContactUsComponent {
+  onSubmit(){
+    console.log();
+    
+  }
 
 }
