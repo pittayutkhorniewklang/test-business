@@ -1,15 +1,14 @@
+<div *ngIf="product" class="product-detail">
 <div class="col-4">
     <div class="card ">
       <div class="text-center">
-        <img src="images/product01.jpg" class="" style="width: 150px;">
+        <img [src]="product.image" alt="{{ product.name }}" class="product-image">
       </div>
-      <div class="card-body font text-center ">
-        <div class="card-title h5 "  style="text-align: left;">
-           สินค้าที่ 1
-        </div>
-        <p class="card-text " style="text-align: left;">Some quick example text to build on the card title and make up the bulk of the card's
-          content.</p>
+      <div>
+        <h2>{{ product.name }}</h2>
+        <p>Price: {{ product.price }}</p>
+        <p>{{ product.description }}</p>
+      </div>
           <button type="button " class="btn btn-success justify-content-center" style = "text-align: center; ">Success</button>
       </div>
     </div>
-  </div>

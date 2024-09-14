@@ -7,10 +7,13 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { NewproductComponent } from './newproduct/newproduct.component';
-import { AllproductComponent } from './allproduct/allproduct.component';
+
 import { FormsModule } from '@angular/forms';
-import { ProductdetailComponent } from './productdetail/productdetail.component';
+
 import { AboutusComponent } from './aboutus/aboutus.component';
+import { AllProductComponent } from './allproduct/allproduct.component';
+import { ProductDetailComponent } from './productdetail/productdetail.component';
+
 
 @NgModule({
   declarations: [
@@ -20,9 +23,10 @@ import { AboutusComponent } from './aboutus/aboutus.component';
     RegisterComponent,
     ContactUsComponent,
     NewproductComponent,
-    AllproductComponent,
-    ProductdetailComponent,
-    AboutusComponent
+    AllProductComponent,
+    ProductDetailComponent,
+    AboutusComponent,
+  
   ],
   imports: [
     BrowserModule,
