@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../productservice.service';
 
 @Component({
-  selector: 'app-allproduct',
-  templateUrl: './allproduct.component.html',
-  styleUrls: ['./allproduct.component.css']
+  selector: 'app-original',
+  templateUrl: './original.component.html',
+  styleUrl: './original.component.css'
 })
-export class AllProductComponent implements OnInit {
+export class OriginalComponent implements OnInit{
   products: any[] = []; // ตัวแปรเก็บรายการสินค้า
   filteredProducts: any[] = []; // ตัวแปรเก็บสินค้าหลังการกรอง
 
@@ -19,8 +19,9 @@ export class AllProductComponent implements OnInit {
 
   filterProducts() {
     this.filteredProducts = this.products.filter(product => 
-      product.category.includes('allproduct') // กรองตามหมวดหมู่ kids
+      product.category.includes('original') // กรองตามหมวดหมู่ kids
     );
-    console.log(this.filteredProducts); // ตรวจสอบสินค้าที่ถูกกรองออกมา
+
 }
   }
+
