@@ -19,7 +19,7 @@ export class SprunchieComponent implements OnInit{
 
   filterProducts() {
     this.filteredProducts = this.products.filter(product => 
-      product.category.includes('original') // กรองตามหมวดหมู่ kids
+      product.category.includes('sprunchie') // กรองตามหมวดหมู่ kids
     );
 
 }

@@ -1,0 +1,78 @@
+body {
+    background-color: #faf2e4; /* สีพื้นหลังตามตัวอย่าง */
+  }
+  
+  .product-detail-container {
+    background-color: #fef5e7;
+    padding: 20px;
+    border-radius: 15px;
+    /* ลบเส้นขอบและเงาออก */
+  }
+  
+  .product-image-detail {
+    border: none; /* ลบเส้นขอบ */
+    box-shadow: none; /* ลบเงาที่อาจมีผลทำให้ดูเหมือนมีกรอบ */
+}
+  
+  .product-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .product-price {
+    color: #ff6f61;
+    font-size: 1.8rem;
+    font-weight: bold;
+  }
+  
+  .product-quantity {
+    margin-top: 20px;
+  }
+  
+  .quantity-input {
+    max-width: 150px;
+  }
+  
+  .quantity-input button {
+    width: 40px;
+    height: 40px;
+    font-size: 1.2rem;
+  }
+  
+  .quantity-input input {
+    width: 60px;
+    font-size: 1.2rem;
+  }
+  
+  .add-to-cart-btn {
+    background-color: #ff6f61;
+    border-color: #ff6f61;
+  }
+  
+  .add-to-cart-btn:hover {
+    background-color: #e65c50;
+  }
+  
+  .wishlist-btn {
+    border-color: #ff6f61;
+  }
+  
+  .wishlist-btn i {
+    color: #ff6f61;
+  }
+  
+  .wishlist-btn:hover {
+    background-color: #fff;
+  }
+  
+  .product-details strong {
+    color: #c96868;
+  }
+  
+  .mt-3, .mt-4 {
+    margin-top: 1.5rem;
+  }
+  
+
+

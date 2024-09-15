@@ -12,10 +12,11 @@ import { FormsModule } from '@angular/forms';
 
 import { AboutusComponent } from './aboutus/aboutus.component';
 import { AllProductComponent } from './allproduct/allproduct.component';
-import { ProductDetailComponent } from './productdetail/productdetail.component';
+
 import { KidsComponent } from './kids/kids.component';
 import { SprunchieComponent } from './sprunchie/sprunchie.component';
 import { OriginalComponent } from './original/original.component';
+import { ProductdetailComponent } from './productdetail/productdetail.component';
 
 
 @NgModule({
@@ -27,11 +28,12 @@ import { OriginalComponent } from './original/original.component';
     ContactUsComponent,
     NewproductComponent,
     AllProductComponent,
-    ProductDetailComponent,
+
     AboutusComponent,
     KidsComponent,
     SprunchieComponent,
     OriginalComponent,
+    ProductdetailComponent,
 
   ],
   imports: [

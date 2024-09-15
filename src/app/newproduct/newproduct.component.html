@@ -1,131 +1,17 @@
-<!DOCTYPE html>
 
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="newproduct.component.css">
-    <title>JUBJIB SHOP</title>
-</head>
-
-<body>
-<p>newproduct!</p>
-<h2 class = "font welcome-deco">Welcome,</h2>
-<hr />
 <div class="row">
-    
-
-     
-  <div class="col-4">
-    <div class="card ">
-      <div class="text-center">
-        <img src="images/product01.jpg" class="" style="width: 150px;">
-      </div>
-      <div class="card-body font text-center ">
-        <div class="card-title h5 "  style="text-align: left;" routerLink="productdetail">
-           สินค้าที่ 1
-        </div>
-        <p class="card-text " style="text-align: left;">Some quick example text to build on the card title and make up the bulk of the card's
-          content.</p>
-          <button type="button " class="btn btn-success justify-content-center" style = "text-align: center; ">Success</button>
-      </div>
-    </div>
-  </div>
-  
-  <div class="col-4">
-    <div class="card ">
-      <div class="text-center">
-        <img src="images/product01.jpg" class="" style="width: 150px;">
-      </div>
-      <div class="card-body font text-center ">
-        <div class="card-title h5 "  style="text-align: left;">
-           สินค้าที่ 1
-        </div>
-        <p class="card-text " style="text-align: left;">Some quick example text to build on the card title and make up the bulk of the card's
-          content.</p>
-          <button type="button " class="btn btn-success justify-content-center" style = "text-align: center; ">Success</button>
-      </div>
-    </div>
-  </div>
-  
-  <div class="col-4">
-    <div class="card ">
-      <div class="text-center">
-        <img src="" class="" style="width: 150px;">
-      </div>
-      <div class="card-body font text-center ">
-        <div class="card-title h5 "  style="text-align: left;">
-           สินค้าที่ 1
-        </div>
-        <p class="card-text " style="text-align: left;">Some quick example text to build on the card title and make up the bulk of the card's
-          content.</p>
-          <button type="button " class="btn btn-success justify-content-center" style = "text-align: center; ">Success</button>
+  <div class="col-md-4 mb-4" *ngFor="let product of filteredProducts"> <!-- ใช้ filteredProducts ไม่ใช่ products -->
+    <div class="card-product">
+      <div class="card-body text-center">
+        <img [src]="product.image" alt="{{ product.name }}" class="product-image img-fluid">
+        <a [routerLink]="['/product', product.id]" class="product-link">
+          <h5 class="font-card">{{ product.name }}</h5>
+          <p class="font-card">{{ product.description }}</p>
+        </a>
+        <p class="font-card">{{ product.price | currency:'THB':'symbol':'1.0-0' }}</p>
+        <a [routerLink]="['/product', product.id]" class="btn btn-primary">เพิ่มในตะกร้า</a>
       </div>
     </div>
   </div>
 </div>
 
-<div class="my-3"></div>
-
-
-<div class="row">
-    
-
-     
-    <div class="col-4">
-      <div class="card ">
-        <div class="text-center">
-          <img src="images/product01.jpg" class="" style="width: 150px;">
-        </div>
-        <div class="card-body font text-center ">
-          <div class="card-title h5 "  style="text-align: left;">
-             สินค้าที่ 1
-          </div>
-          <p class="card-text " style="text-align: left;">Some quick example text to build on the card title and make up the bulk of the card's
-            content.</p>
-            <button type="button " class="btn btn-success justify-content-center" style = "text-align: center; ">Success</button>
-        </div>
-      </div>
-    </div>
-    
-    <div class="col-4">
-      <div class="card ">
-        <div class="text-center">
-          <img src="images/product01.jpg" class="" style="width: 150px;">
-        </div>
-        <div class="card-body font text-center ">
-          <div class="card-title h5 "  style="text-align: left;">
-             สินค้าที่ 1
-          </div>
-          <p class="card-text " style="text-align: left;">Some quick example text to build on the card title and make up the bulk of the card's
-            content.</p>
-            <button type="button " class="btn btn-success justify-content-center" style = "text-align: center; ">Success</button>
-        </div>
-      </div>
-    </div>
-    
-    <div class="col-4">
-      <div class="card ">
-        <div class="text-center">
-          <img src="" class="" style="width: 150px;">
-        </div>
-        <div class="card-body font text-center ">
-          <div class="card-title h5 "  style="text-align: left;">
-             สินค้าที่ 1
-          </div>
-          <p class="card-text " style="text-align: left;">Some quick example text to build on the card title and make up the bulk of the card's
-            content.</p>
-            <button type="button " class="btn btn-success justify-content-center" style = "text-align: center; ">Success</button>
-        </div>
-      </div>
-    </div>
-
-
- 
-
-
-  </div>
-  <div class="my-3"></div>
-</body>

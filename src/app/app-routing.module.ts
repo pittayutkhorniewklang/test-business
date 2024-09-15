@@ -6,11 +6,13 @@ import { RegisterComponent } from './register/register.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { NewproductComponent } from './newproduct/newproduct.component';
 import { AllProductComponent } from './allproduct/allproduct.component';
-import { ProductDetailComponent } from './productdetail/productdetail.component';
+
 import { AboutusComponent } from './aboutus/aboutus.component';
 import { KidsComponent } from './kids/kids.component';
 import { SprunchieComponent } from './sprunchie/sprunchie.component';
 import { OriginalComponent } from './original/original.component';
+import { ProductdetailComponent } from './productdetail/productdetail.component';
+
 
 
 
@@ -22,7 +24,7 @@ const routes: Routes = [
   {path:'contact-us',component:ContactUsComponent},
   {path:'newproduct',component:NewproductComponent},
   {path:'allproduct',component:AllProductComponent},
-  {path:'productdetail/:id',component:ProductDetailComponent},
+  {path:'product/:id',component:ProductdetailComponent},
   {path:'aboutus',component:AboutusComponent},
   {path:'kids',component:KidsComponent},
   {path:'sprunchie',component:SprunchieComponent},
