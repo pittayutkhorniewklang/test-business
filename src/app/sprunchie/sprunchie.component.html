@@ -6,7 +6,7 @@
           <img [src]="product.image" alt="{{ product.name }}" class="product-image img-fluid">
           <a [routerLink]="['/product', product.id]" class="product-link">
             <h5 class="font-card">{{ product.name }}</h5>
-            <p class="font-card">{{ product.description }}</p>
+            
           </a>
           <p class="font-card">{{ product.price | currency:'THB':'symbol':'1.0-0' }}</p>
           <a [routerLink]="['/product', product.id]" class="btn btn-primary">เพิ่มในตะกร้า</a>

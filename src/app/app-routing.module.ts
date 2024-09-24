@@ -12,6 +12,7 @@ import { KidsComponent } from './kids/kids.component';
 import { SprunchieComponent } from './sprunchie/sprunchie.component';
 import { OriginalComponent } from './original/original.component';
 import { ProductdetailComponent } from './productdetail/productdetail.component';
+import { CartComponent } from './cart/cart.component';
 
 
 
@@ -28,7 +29,8 @@ const routes: Routes = [
   {path:'aboutus',component:AboutusComponent},
   {path:'kids',component:KidsComponent},
   {path:'sprunchie',component:SprunchieComponent},
-  {path:'original',component:OriginalComponent}
+  {path:'original',component:OriginalComponent},
+  {path:'cart',component:CartComponent}
 
 ];
 

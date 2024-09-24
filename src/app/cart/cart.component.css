@@ -1,0 +1,18 @@
+table {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  
+  button {
+    width: 30px;
+    height: 30px;
+  }
+  
+  .float-end {
+    float: right;
+  }
+  
+  .text-center img {
+    margin: 0 5px;
+  }
+  

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../productservice.service';
+import { CartService } from '../cart.service';
+import { Router } from '@angular/router'; // นำเข้า Router
 
 @Component({
   selector: 'app-allproduct',
@@ -7,20 +9,26 @@ import { ProductService } from '../productservice.service';
   styleUrls: ['./allproduct.component.css']
 })
 export class AllProductComponent implements OnInit {
-  products: any[] = []; // ตัวแปรเก็บรายการสินค้า
-  filteredProducts: any[] = []; // ตัวแปรเก็บสินค้าหลังการกรอง
+  products: any[] = [];
+  filteredProducts: any[] = [];
 
-  constructor(private productService: ProductService) { }
+  constructor(private productService: ProductService, private cartService: CartService, private router: Router) { } // Inject Router
 
   ngOnInit(): void {
-    this.products = this.productService.products; // ดึงข้อมูลสินค้าทั้งหมด
-    this.filterProducts(); // กรองสินค้าตามหมวดหมู่
+    this.products = this.productService.products;
+    this.filterProducts();
   }
 
   filterProducts() {
     this.filteredProducts = this.products.filter(product => 
-      product.category.includes('allproduct') // กรองตามหมวดหมู่ kids
+      product.category.includes('allproduct')
     );
-    console.log(this.filteredProducts); // ตรวจสอบสินค้าที่ถูกกรองออกมา
-}
   }
+
+  addToCart(product: any) {
+    this.cartService.addToCart(product);
+    console.log('เพิ่มสินค้าลงในตะกร้า:', product);  // ตรวจสอบสินค้าที่ถูกเพิ่ม
+    alert('เพิ่มสินค้าลงในตะกร้าแล้ว!');
+    this.router.navigate(['/cart']);
+  }
+}

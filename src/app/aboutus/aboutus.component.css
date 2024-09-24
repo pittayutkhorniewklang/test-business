@@ -12,10 +12,13 @@
 
 /* Styling for the icons */
 .feature-icon {
+    width: 70px;  /* ขนาดของไอคอน */
+    margin-right: 15px; /* ระยะห่างระหว่างไอคอนและข้อความ */
+}
+.feature-iconv2 {
     width: 50px;  /* ขนาดของไอคอน */
     margin-right: 15px; /* ระยะห่างระหว่างไอคอนและข้อความ */
 }
-
 /* Heading styles for each feature */
 .feature-box h5 {
     font-family: 'Poppins', sans-serif;
@@ -42,3 +45,29 @@
     margin: auto;  /* จัดตำแหน่งกลางถ้าต้องการ */
     margin: 0; 
 }
+.quick-link {
+    padding: 0px;
+  }
+  
+  .quick-link h6 {
+    font-size: 16px;
+    margin-bottom: 8px;
+  }
+  
+  .quick-link ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .quick-link li {
+    margin: 5px 0;
+  }
+  
+  .quick-link a {
+    text-decoration: none;
+    color: #000;
+  }
+  
+  .quick-link a:hover {
+    text-decoration: underline;
+  }
