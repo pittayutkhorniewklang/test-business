@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../productservice.service';
 import { CartService } from '../cart.service';
-import { Router } from '@angular/router'; // นำเข้า Router
 
 @Component({
   selector: 'app-allproduct',
@@ -9,26 +8,27 @@ import { Router } from '@angular/router'; // นำเข้า Router
   styleUrls: ['./allproduct.component.css']
 })
 export class AllProductComponent implements OnInit {
-  products: any[] = [];
-  filteredProducts: any[] = [];
+  products: any[] = [];  // ประกาศตัวแปรสำหรับเก็บสินค้าทั้งหมด
+  filteredProducts: any[] = [];  // ประกาศตัวแปรสำหรับเก็บสินค้าหลังการกรอง
 
-  constructor(private productService: ProductService, private cartService: CartService, private router: Router) { } // Inject Router
+  constructor(private productService: ProductService, private cartService: CartService) { }
 
   ngOnInit(): void {
-    this.products = this.productService.products;
-    this.filterProducts();
+    // เรียกใช้ฟังก์ชันเพื่อดึงข้อมูลสินค้าจาก ProductService
+    this.productService.getProducts().subscribe((data: any[]) => {
+      this.products = data;  // รับข้อมูลสินค้าทั้งหมด
+      this.filterProducts(); // เรียกใช้ฟังก์ชันกรองสินค้า
+    });
   }
 
   filterProducts() {
-    this.filteredProducts = this.products.filter(product => 
-      product.category.includes('allproduct')
-    );
+    // กรองสินค้าตามหมวดหมู่
+    this.filteredProducts = this.products.filter(product => product.category.includes('allproduct'));
   }
 
   addToCart(product: any) {
+    // ฟังก์ชันเพิ่มสินค้าไปยังตะกร้า
     this.cartService.addToCart(product);
-    console.log('เพิ่มสินค้าลงในตะกร้า:', product);  // ตรวจสอบสินค้าที่ถูกเพิ่ม
     alert('เพิ่มสินค้าลงในตะกร้าแล้ว!');
-    this.router.navigate(['/cart']);
   }
 }

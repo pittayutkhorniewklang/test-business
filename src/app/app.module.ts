@@ -19,6 +19,7 @@ import { ProductdetailComponent } from './productdetail/productdetail.component'
 // แก้ไขการอ้างอิง AuthService
 import { AuthService } from '../../auth.service';
 import { CartComponent } from './cart/cart.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { CartComponent } from './cart/cart.component';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule,
   ],
   providers: [
     provideClientHydration(),

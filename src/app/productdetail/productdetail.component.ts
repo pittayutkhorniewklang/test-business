@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../productservice.service';
 import { ActivatedRoute } from '@angular/router';
+import { CartService } from '../cart.service'; // เพิ่ม CartService
 
 @Component({
   selector: 'app-productdetail',
   templateUrl: './productdetail.component.html',
-  styleUrl: './productdetail.component.css'
+  styleUrls: ['./productdetail.component.css']
 })
 export class ProductdetailComponent implements OnInit {
   product: any;
@@ -13,12 +14,23 @@ export class ProductdetailComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private productService: ProductService
+    private productService: ProductService,
+    private cartService: CartService // Inject CartService
   ) {}
 
   ngOnInit(): void {
-    const productId = +this.route.snapshot.paramMap.get('id')!;
-    this.product = this.productService.getProductById(productId);
+    const productId = +this.route.snapshot.paramMap.get('id')!; // ดึง product ID จาก URL
+
+    // ใช้ subscribe เพื่อดึงข้อมูลจาก Observable จาก ProductService
+    this.productService.getProductById(productId).subscribe(
+      (data: any) => {
+        this.product = data; // รับข้อมูลสินค้าที่ดึงมาจาก API
+        console.log(this.product); // ตรวจสอบข้อมูลที่ได้รับ
+      },
+      (error: any) => {
+        console.error("Error fetching product details: ", error);
+      }
+    );
   }
 
   increaseQuantity() {
@@ -30,5 +42,11 @@ export class ProductdetailComponent implements OnInit {
       this.quantity--;
     }
   }
-}
 
+  // ฟังก์ชันสำหรับเพิ่มสินค้าไปยังตะกร้า
+  addToCart() {
+    const productToAdd = { ...this.product, quantity: this.quantity }; // เพิ่มจำนวนสินค้า
+    this.cartService.addToCart(productToAdd); // เพิ่มสินค้าไปยังตะกร้า
+    alert('เพิ่มสินค้าลงในตะกร้าแล้ว!');
+  }
+}
