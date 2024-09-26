@@ -22,7 +22,8 @@ import { CartComponent } from './cart/cart.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ManageProductComponent } from './admin/manage-product/manage-product.component';
 import { SidebarComponent } from './admin/sidebar/sidebar.component';
-import { AdminhomeComponent } from './admin/adminhome/adminhome.component';
+import { DashboardComponent } from './admin/dashboard/dashboard.component';
+
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { AdminhomeComponent } from './admin/adminhome/adminhome.component';
     CartComponent,
     ManageProductComponent,
     SidebarComponent,
-    AdminhomeComponent
+    DashboardComponent,
+    
   ],
   imports: [
     BrowserModule,

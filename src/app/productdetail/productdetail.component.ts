@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ProductService } from '../productservice.service';
+import { ProductService } from '../services/productservice.service';
 import { ActivatedRoute } from '@angular/router';
-import { CartService } from '../cart.service'; // เพิ่ม CartService
+import { CartService } from '../services/cart.service'; // เพิ่ม CartService
 
 @Component({
   selector: 'app-productdetail',

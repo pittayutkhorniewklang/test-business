@@ -1,0 +1,30 @@
+.dashboard {
+    width: 100%;
+    max-width: 1200px;
+    background-color: #f4f4f4;
+    padding: 40px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    margin-left: 7rem;
+  }
+  
+  .info-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+  }
+  
+  .info-box {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 40px;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    font-size: 22px;
+  }
+  
+  .info-box div {
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
