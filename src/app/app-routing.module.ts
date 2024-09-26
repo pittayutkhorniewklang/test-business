@@ -13,6 +13,9 @@ import { SprunchieComponent } from './sprunchie/sprunchie.component';
 import { OriginalComponent } from './original/original.component';
 import { ProductdetailComponent } from './productdetail/productdetail.component';
 import { CartComponent } from './cart/cart.component';
+import { ManageProductComponent } from './admin/manage-product/manage-product.component';
+
+
 
 
 
@@ -30,7 +33,9 @@ const routes: Routes = [
   {path:'kids',component:KidsComponent},
   {path:'sprunchie',component:SprunchieComponent},
   {path:'original',component:OriginalComponent},
-  {path:'cart',component:CartComponent}
+  {path:'cart',component:CartComponent},
+  {path:'manage-product',component:ManageProductComponent}
+ 
 
 ];
 

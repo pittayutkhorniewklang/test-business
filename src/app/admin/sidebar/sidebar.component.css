@@ -1,0 +1,42 @@
+/* Wrapper styles */
+#wrapper {
+  
+  display: flex;
+  width: 100%;
+  height: 90vh; /* ความสูงเต็มหน้าจอ */
+}
+
+/* Sidebar styles */
+#sidebar-wrapper {
+  width: 15rem;
+  height: 100vh; /* Sidebar ครอบคลุมความสูงเต็มหน้าจอ */
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 1000;
+  background-color: #EAC4C4 !important;
+  border-right: 1px solid #EAC4C4!important;
+  margin-top: 60px; /* เว้นระยะจากด้านบน (ปรับตามความสูงของ Navbar) */
+  }
+
+
+/* Page Content */
+#page-content-wrapper {
+  margin-left: 15rem; /* เว้นระยะทางด้านซ้ายตามความกว้างของ Sidebar */
+  padding: 20px;
+}
+
+.list-group-item {
+  border: none; /* ลบเส้นขีด */
+  padding: 10px 20px; /* สามารถปรับ padding ได้ตามต้องการ */
+  background-color: #EAC4C4!important; /* ปรับสีพื้นหลังเป็นโปร่งใสถ้าต้องการ */
+  line-height: 2.5;
+  font-size: 18px!important;
+  color: #ffffff!important;
+  font-family: 'poppins','Kanit'!important;
+
+}
+
+.list-group-item:hover {
+  background-color: #9e5959!important; /* ใส่สีพื้นหลังขณะ hover */
+}

@@ -3,7 +3,7 @@
     font-family: 'poppins','Kanit';
 }
 .custom-navbar {
-    background-color: pink !important;
+    background-color: #EAC4C4 !important;
   }
   .btn-color {
     background-color: #A04747;
@@ -32,10 +32,11 @@
   .welcome-deco{
     margin-top: 50px;
   }
-  .navbar-text{
-    color: white;
+  .navbar-text{ 
+    color: white ;
     font-weight: bold;
     font-family: 'poppins','Kanit';
+    
   }
   .justify-content-center{
     justify-content: center;
@@ -50,4 +51,13 @@
     background-color:rgb(209, 230, 223);
     border-color: rgb(209, 230, 223);
     padding: 5px 10px;
+  }
+
+  
+  .nav-item{
+    color: white !important;
+    font-weight: bold !important;
+    font-family: 'poppins','Kanit' !important;
+    font-size: 16px;
+
   }

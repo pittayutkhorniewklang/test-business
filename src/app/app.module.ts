@@ -20,6 +20,9 @@ import { ProductdetailComponent } from './productdetail/productdetail.component'
 import { AuthService } from '../../auth.service';
 import { CartComponent } from './cart/cart.component';
 import { HttpClientModule } from '@angular/common/http';
+import { ManageProductComponent } from './admin/manage-product/manage-product.component';
+import { SidebarComponent } from './admin/sidebar/sidebar.component';
+import { AdminhomeComponent } from './admin/adminhome/adminhome.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +38,10 @@ import { HttpClientModule } from '@angular/common/http';
     SprunchieComponent,
     OriginalComponent,
     ProductdetailComponent,
-    CartComponent
+    CartComponent,
+    ManageProductComponent,
+    SidebarComponent,
+    AdminhomeComponent
   ],
   imports: [
     BrowserModule,
