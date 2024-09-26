@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../productservice.service';
 import { CartService } from '../cart.service';
+import { Router } from '@angular/router'; // เพิ่มการ import Router
 
 @Component({
   selector: 'app-allproduct',
@@ -8,27 +9,41 @@ import { CartService } from '../cart.service';
   styleUrls: ['./allproduct.component.css']
 })
 export class AllProductComponent implements OnInit {
-  products: any[] = [];  // ประกาศตัวแปรสำหรับเก็บสินค้าทั้งหมด
-  filteredProducts: any[] = [];  // ประกาศตัวแปรสำหรับเก็บสินค้าหลังการกรอง
+  products: any[] = [];  // ตัวแปรเก็บสินค้าทั้งหมด
+  filteredProducts: any[] = [];  // ตัวแปรเก็บสินค้าที่ถูกกรอง
 
-  constructor(private productService: ProductService, private cartService: CartService) { }
+  constructor(
+    private productService: ProductService, 
+    private cartService: CartService,
+    private router: Router  // Inject Router
+  ) { }
 
   ngOnInit(): void {
-    // เรียกใช้ฟังก์ชันเพื่อดึงข้อมูลสินค้าจาก ProductService
-    this.productService.getProducts().subscribe((data: any[]) => {
-      this.products = data;  // รับข้อมูลสินค้าทั้งหมด
-      this.filterProducts(); // เรียกใช้ฟังก์ชันกรองสินค้า
+    // ดึงข้อมูลสินค้าทั้งหมดจาก ProductService
+    this.productService.getProducts().subscribe({
+      next: (data: any[]) => {
+        this.products = data;  // เก็บข้อมูลสินค้าทั้งหมด
+        this.filterProducts(); // กรองสินค้าตามหมวดหมู่
+      },
+      error: (error) => {
+        console.error('เกิดข้อผิดพลาดในการดึงข้อมูลสินค้า:', error);  // แสดงข้อผิดพลาดหากดึงข้อมูลไม่สำเร็จ
+      }
     });
   }
 
+  // ฟังก์ชันกรองสินค้าตามหมวดหมู่
   filterProducts() {
-    // กรองสินค้าตามหมวดหมู่
-    this.filteredProducts = this.products.filter(product => product.category.includes('allproduct'));
+    this.filteredProducts = this.products.filter(product => 
+      product.category && product.category.includes('allproduct')
+    );
   }
 
+  // ฟังก์ชันสำหรับเพิ่มสินค้าไปยังตะกร้า
   addToCart(product: any) {
-    // ฟังก์ชันเพิ่มสินค้าไปยังตะกร้า
-    this.cartService.addToCart(product);
+    const productToAdd = { ...product, quantity: 1 };  // กำหนดค่าเริ่มต้นให้ quantity เป็น 1
+    console.log('Product added to cart:', productToAdd);  // ตรวจสอบว่าสินค้าที่ถูกเพิ่มมีข้อมูลครบถ้วนหรือไม่
+    this.cartService.addToCart(productToAdd);  // เรียกใช้ CartService เพื่อเพิ่มสินค้าไปยังตะกร้า
     alert('เพิ่มสินค้าลงในตะกร้าแล้ว!');
+    this.router.navigate(['/cart']);  // เพิ่มการนำทางไปหน้า cart หลังจากเพิ่มสินค้า
   }
 }

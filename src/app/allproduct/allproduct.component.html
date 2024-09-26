@@ -9,7 +9,8 @@
          
         </a>
         <p class="font-card">{{ product.price | currency:'THB':'symbol':'1.0-0' }}</p>
-        <a [routerLink]="['/product', product.id]" class="btn btn-primary">เพิ่มในตะกร้า</a>
+        <button class="btn btn-primary" (click)="addToCart(product)">เพิ่มในตะกร้า</button>
+
       </div>
     </div>
   </div>

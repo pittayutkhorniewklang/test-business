@@ -12,15 +12,18 @@ export class CartService {
     if (existingProduct) {
       existingProduct.quantity += product.quantity;  // เพิ่มจำนวนสินค้าที่มีอยู่แล้ว
     } else {
-      this.items.push({ ...product, quantity: product.quantity });  // เพิ่มสินค้าใหม่ในตะกร้า พร้อมจำนวนสินค้า
+      this.items.push({ ...product, quantity: product.quantity || 1 });  // เพิ่มสินค้าใหม่ในตะกร้า พร้อมจำนวนสินค้า (ถ้าไม่มีค่า quantity ให้ใช้ 1)
     }
     console.log('สินค้าในตะกร้าหลังเพิ่ม:', this.items);  // ตรวจสอบรายการสินค้าที่ถูกเพิ่ม
   }
+  
 
   // ฟังก์ชันดึงสินค้าจากตะกร้า
   getItems(): any[] {
+    console.log('Items in cart:', this.items);  // ตรวจสอบสินค้าที่อยู่ในตะกร้า
     return this.items;
   }
+  
 
   // ฟังก์ชันล้างสินค้าทั้งหมดในตะกร้า
   clearCart() {
