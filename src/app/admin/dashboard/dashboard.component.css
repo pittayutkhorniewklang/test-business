@@ -1,30 +1,31 @@
 .dashboard {
-    width: 100%;
-    max-width: 1200px;
-    background-color: #f4f4f4;
-    padding: 40px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    border-radius: 8px;
-    margin-left: 7rem;
-  }
+  width: 100%;
+  max-width: 1400px; /* เพิ่มความกว้างของ dashboard */
   
-  .info-container {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 40px;
-  }
+  padding: 50px; /* เพิ่ม padding */
   
-  .info-box {
-    background-color: #fff;
-    border-radius: 8px;
-    padding: 40px;
-    text-align: center;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    font-size: 22px;
-  }
-  
-  .info-box div {
-    font-size: 24px;
-    font-weight: bold;
-  }
-  
+  border-radius: 8px;
+  margin-left: 7rem;
+}
+
+.info-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 50px; /* เพิ่มระยะห่างระหว่างกล่อง */
+}
+
+.info-box {
+  background-color: #fff;
+  border-radius: 12px; /* เพิ่มความโค้งมน */
+  padding: 60px; /* เพิ่ม padding ให้ใหญ่ขึ้น */
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* เพิ่ม shadow ให้ชัดขึ้น */
+  font-size: 26px; /* เพิ่มขนาดฟอนต์ */
+  width: 100%; /* ทำให้กล่องมีขนาดเต็มความกว้าง */
+  max-width: 600px; /* จำกัดความกว้างสูงสุดของกล่อง */
+}
+
+.info-box div {
+  font-size: 28px; /* เพิ่มขนาดตัวอักษรภายในกล่อง */
+  font-weight: bold;
+}
