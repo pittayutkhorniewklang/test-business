@@ -1,33 +1,66 @@
-
 <div class="product-management">
     <div class="header">
-      <input type="text" placeholder="search" class="search-bar" />
-      <button class="btn-add">add</button>
+        <input type="text" placeholder="Search" class="search-bar" />
     </div>
-  
+
+    <!-- ฟอร์มการเพิ่มสินค้า -->
+    <div class="add-product-form">
+        <h2>Add New Product</h2>
+        <div class="form-group">
+            <label>Product Name</label>
+            <input [(ngModel)]="newProduct.name" type="text" placeholder="Product Name" class="input-field" />
+        </div>
+        <div class="form-group">
+            <label>Category</label>
+            <input [(ngModel)]="newProduct.category" type="text" placeholder="Category" class="input-field" />
+        </div>
+        <div class="form-group">
+            <label>Brand</label>
+            <input [(ngModel)]="newProduct.brand" type="text" placeholder="Brand" class="input-field" />
+        </div>
+        <div class="form-group">
+            <label>Stock</label>
+            <input [(ngModel)]="newProduct.stock" type="number" placeholder="Stock" class="input-field" />
+        </div>
+        <div class="form-group">
+            <label>Price</label>
+            <input [(ngModel)]="newProduct.price" type="number" placeholder="Price" class="input-field" />
+        </div>
+        <div class="form-group">
+            <label>Description</label>
+            <textarea [(ngModel)]="newProduct.description" placeholder="Description" class="input-field"></textarea>
+        </div>
+        <div class="form-group">
+            <label>Choose File</label>
+            <input type="file" (change)="onFileSelected($event)" placeholder="Choose File" class="input-field" />
+        </div>
+        <button class="btn-save" (click)="addProduct()">Add Product</button>
+    </div>
+
+    <!-- ตารางแสดงสินค้าทั้งหมด -->
     <table class="product-table">
-      <thead>
-        <tr>
-          <th>products</th>
-          <th>category</th>
-          <th>stock</th>
-          <th>price</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let product of products">
-          <td class="product-image">
-            <img [src]="product.image" alt="Product Image" />
-          </td>
-          <td>{{ product.name }}</td>
-          <td>{{ product.stock }}</td>
-          <td>{{ product.price | currency }}</td>
-          <td class="action-buttons">
-            <button class="btn-edit">edit</button>
-            <button class="btn-delete">delete</button>
-          </td>
-        </tr>
-      </tbody>
+        <thead>
+            <tr>
+                <th>Product</th>
+                <th>Category</th>
+                <th>Brand</th>
+                <th>Stock</th>
+                <th>Price</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let product of products">
+                <td>{{ product.name }}</td>
+                <td>{{ product.category }}</td>
+                <td>{{ product.brand }}</td>
+                <td>{{ product.stock }}</td>
+                <td>{{ product.price | currency }}</td>
+                <td class="action-buttons">
+                    <button class="btn-edit" (click)="editProduct(product)">Edit</button>
+                    <button class="btn-delete" (click)="deleteProduct(product.id)">Delete</button>
+                </td>
+            </tr>
+        </tbody>
     </table>
-  </div>
-  
+</div>
