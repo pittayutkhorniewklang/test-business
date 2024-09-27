@@ -1,0 +1,29 @@
+<div class="search-bar">
+    <input type="text" [(ngModel)]="searchQuery" placeholder="search" (input)="searchOrders()" />
+  </div>
+  
+  <table class="order-table">
+    <thead>
+      <tr>
+        <th>Order ID</th>
+        <th>Customer</th>
+        <th>Order</th>
+        <th>Delivery Date</th>
+        <th>Delivery Pricing</th>
+        <th>Delivery Status</th>
+        <th>Payment</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let order of orders">
+        <td>{{ order.orderId }}</td>
+        <td>{{ order.customer }}</td>
+        <td>{{ order.order }}</td>
+        <td>{{ order.deliveryDate }}</td>
+        <td>{{ order.deliveryPricing }}</td>
+        <td>{{ order.deliveryStatus }}</td>
+        <td>{{ order.payment }}</td>
+      </tr>
+    </tbody>
+  </table>
+  

@@ -1,1 +1,33 @@
-<app-sidebar></app-sidebar>
+
+<div class="product-management">
+    <div class="header">
+      <input type="text" placeholder="search" class="search-bar" />
+      <button class="btn-add">add</button>
+    </div>
+  
+    <table class="product-table">
+      <thead>
+        <tr>
+          <th>products</th>
+          <th>category</th>
+          <th>stock</th>
+          <th>price</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let product of products">
+          <td class="product-image">
+            <img [src]="product.image" alt="Product Image" />
+          </td>
+          <td>{{ product.name }}</td>
+          <td>{{ product.stock }}</td>
+          <td>{{ product.price | currency }}</td>
+          <td class="action-buttons">
+            <button class="btn-edit">edit</button>
+            <button class="btn-delete">delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  

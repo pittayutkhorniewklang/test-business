@@ -23,6 +23,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ManageProductComponent } from './admin/manage-product/manage-product.component';
 import { SidebarComponent } from './admin/sidebar/sidebar.component';
 import { DashboardComponent } from './admin/dashboard/dashboard.component';
+import { ManageOrderComponent } from './admin/manage-order/manage-order.component';
 
 
 @NgModule({
@@ -43,6 +44,7 @@ import { DashboardComponent } from './admin/dashboard/dashboard.component';
     ManageProductComponent,
     SidebarComponent,
     DashboardComponent,
+    ManageOrderComponent,
     
   ],
   imports: [

@@ -16,6 +16,7 @@ import { CartComponent } from './cart/cart.component';
 import { ManageProductComponent } from './admin/manage-product/manage-product.component';
 import { DashboardComponent } from './admin/dashboard/dashboard.component';
 import { SidebarComponent } from './admin/sidebar/sidebar.component';
+import { ManageOrderComponent } from './admin/manage-order/manage-order.component';
 
 
 
@@ -37,11 +38,11 @@ const routes: Routes = [
   {path:'sprunchie',component:SprunchieComponent},
   {path:'original',component:OriginalComponent},
   {path:'cart',component:CartComponent},
-  {path:'manage-product',component:ManageProductComponent},
+  
   {path:'dashboard',component:DashboardComponent},
-  {path:'sidebar',component:SidebarComponent}
- 
-
+  {path:'sidebar',component:SidebarComponent},
+  {path:'dashboard/manage-product',component:ManageProductComponent},
+  {path:'dashboard/manage-order',component:ManageOrderComponent},
 ];
 
 @NgModule({
