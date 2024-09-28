@@ -20,10 +20,6 @@ import { ManageOrderComponent } from './admin/manage-order/manage-order.componen
 
 
 
-
-
-
-
 const routes: Routes = [
   {path:'', component: HomeComponent},
   {path:'home',component:HomeComponent},

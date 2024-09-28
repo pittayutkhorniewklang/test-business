@@ -7,11 +7,13 @@ import { Observable } from 'rxjs';
 })
 export class ProductService {
 
-  private apiUrlAllProducts = 'http://localhost/shop_backend/get_all_products.php'; // URL ของ API สำหรับดึงสินค้าทั้งหมด
-  private apiUrlProductById = 'http://localhost/shop_backend/get_product_by_id.php'; // URL ของ API สำหรับดึงสินค้าตาม ID
+  private apiUrlAllProducts = 'http://localhost/shop_backend/get_products.php'; // URL ของ API สำหรับดึงสินค้าทั้งหมด
+  private apiUrlProductById = 'http://localhost/shop_backend/get_products.php'; // URL ของ API สำหรับดึงสินค้าตาม ID
   private apiUrlDeleteProduct = 'http://localhost/shop_backend/delete_product.php'; // URL ของ API สำหรับลบสินค้า
   private apiUrlAddProduct = 'http://localhost/shop_backend/add_product.php'; // URL ของ API สำหรับเพิ่มสินค้า
-  private apiUrlUpdateProduct = 'http://localhost/shop_backend/update_product.php'; // URL ของ API สำหรับอัปเดตสินค้า
+  private apiUrlEditProduct = 'http://localhost/shop_backend/edit_product.php'; // URL ของ API สำหรับแก้ไขสินค้า
+  private apiUrlIncreaseStock = 'http://localhost/shop_backend/increase_stock.php'; // URL สำหรับเพิ่มสต็อก
+  private apiUrlReduceStock = 'http://localhost/shop_backend/reduce_stock.php'; // URL สำหรับลดสต็อก
 
   constructor(private http: HttpClient) {}
 
@@ -41,10 +43,43 @@ export class ProductService {
     return this.http.post(this.apiUrlAddProduct, product); // ส่งข้อมูลสินค้าไปยัง API เพื่อเพิ่มสินค้า
   }
 
-  // ฟังก์ชันสำหรับอัปเดตสินค้า
-  updateProduct(product: any): Observable<any> {
-    const url = `${this.apiUrlUpdateProduct}?id=${product.id}`;
-    console.log('Updating product:', product);
-    return this.http.put(url, product); // ส่งข้อมูลสินค้าไปยัง API เพื่ออัปเดต
+  // ฟังก์ชันสำหรับแก้ไขสินค้า
+  editProduct(product: any): Observable<any> {
+    const formData = new FormData();
+    formData.append('id', product.id);
+    formData.append('name', product.name);
+    formData.append('category', product.category);
+    formData.append('brand', product.brand);
+    formData.append('stock', product.stock.toString());  // แปลง stock เป็น string เพื่อให้เข้ากับ FormData
+    formData.append('price', product.price.toString());  // แปลง price เป็น string เพื่อให้เข้ากับ FormData
+    formData.append('description', product.description);
+
+    if (product.file) {
+      formData.append('file', product.file); // เพิ่มไฟล์ถ้ามีการเลือกไฟล์ใหม่
+    }
+
+    const url = `${this.apiUrlEditProduct}?id=${product.id}`;
+    console.log('Editing product:', formData);
+    return this.http.post(url, formData); // ใช้ POST เพื่อแก้ไขสินค้า
+  }
+
+  // ฟังก์ชันสำหรับเพิ่มสต็อก
+  increaseStock(productId: number, quantity: number): Observable<any> {
+    const formData = new FormData();
+    formData.append('product_id', productId.toString());
+    formData.append('quantity', quantity.toString());
+
+    console.log('Increasing stock for product:', productId, 'by quantity:', quantity);
+    return this.http.post(this.apiUrlIncreaseStock, formData);
+  }
+
+  // ฟังก์ชันสำหรับลดสต็อก
+  reduceStock(productId: number, quantity: number): Observable<any> {
+    const formData = new FormData();
+    formData.append('product_id', productId.toString());
+    formData.append('quantity_sold', quantity.toString());
+
+    console.log('Reducing stock for product:', productId, 'by quantity:', quantity);
+    return this.http.post(this.apiUrlReduceStock, formData);
   }
 }

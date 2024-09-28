@@ -5,7 +5,7 @@
 
     <!-- ฟอร์มการเพิ่มสินค้า -->
     <div class="add-product-form">
-        <h2>Add New Product</h2>
+        <h2>{{ isEditing ? 'Edit Product' : 'Add New Product / Edit' }}</h2>
         <div class="form-group">
             <label>Product Name</label>
             <input [(ngModel)]="newProduct.name" type="text" placeholder="Product Name" class="input-field" />
@@ -34,7 +34,11 @@
             <label>Choose File</label>
             <input type="file" (change)="onFileSelected($event)" placeholder="Choose File" class="input-field" />
         </div>
-        <button class="btn-save" (click)="addProduct()">Add Product</button>
+
+        <!-- ปุ่มสำหรับบันทึกสินค้าใหม่ -->
+        <button class="btn-save" (click)="saveProduct()">
+            {{ isEditing ? 'Update Product' : 'Add Product' }}
+        </button>
     </div>
 
     <!-- ตารางแสดงสินค้าทั้งหมด -->
