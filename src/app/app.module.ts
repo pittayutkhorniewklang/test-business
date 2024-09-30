@@ -14,9 +14,6 @@ import { KidsComponent } from './kids/kids.component';
 import { SprunchieComponent } from './sprunchie/sprunchie.component';
 import { OriginalComponent } from './original/original.component';
 import { ProductdetailComponent } from './productdetail/productdetail.component';
-
-
-// แก้ไขการอ้างอิง AuthService
 import { AuthService } from '../../auth.service';
 import { CartComponent } from './cart/cart.component';
 import { HttpClientModule } from '@angular/common/http';

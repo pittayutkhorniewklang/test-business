@@ -58,9 +58,8 @@ export class ProductService {
       formData.append('file', product.file); // เพิ่มไฟล์ถ้ามีการเลือกไฟล์ใหม่
     }
 
-    const url = `${this.apiUrlEditProduct}?id=${product.id}`;
     console.log('Editing product:', formData);
-    return this.http.post(url, formData); // ใช้ POST เพื่อแก้ไขสินค้า
+    return this.http.post(this.apiUrlEditProduct, formData); // ใช้ POST เพื่อแก้ไขสินค้า
   }
 
   // ฟังก์ชันสำหรับเพิ่มสต็อก
