@@ -24,6 +24,7 @@ export class ManageProductComponent implements OnInit {
     this.productService.getProducts().subscribe(
       (data) => {
         this.products = data;
+        console.log('Products loaded:', this.products);
       },
       (error) => {
         console.error('Error fetching products:', error);
@@ -39,6 +40,9 @@ export class ManageProductComponent implements OnInit {
 
   // ฟังก์ชันสำหรับเพิ่มสินค้าใหม่หรือบันทึกการแก้ไขสินค้า
   saveProduct() {
+    console.log('saveProduct function called');
+    console.log('Product data before saving:', this.product);
+
     const formData = new FormData();
     formData.append('name', this.product.name);
     formData.append('category', this.product.category);
@@ -73,6 +77,7 @@ export class ManageProductComponent implements OnInit {
 
   // ฟังก์ชันสำหรับลบสินค้า
   deleteProduct(id: number) {
+    console.log('deleteProduct function called with id:', id);
     if (confirm('Are you sure you want to delete this product?')) {
       this.productService.deleteProduct(id).subscribe(() => {
         this.loadProducts();
@@ -84,6 +89,7 @@ export class ManageProductComponent implements OnInit {
 
   // ฟังก์ชันสำหรับแก้ไขสินค้า
   editProduct(product: any) {
+    console.log('editProduct function called with product:', product);
     this.product = { ...product };  // คัดลอกข้อมูลสินค้าที่ต้องการแก้ไข
     this.selectedFile = null;  // เคลียร์ไฟล์ที่เลือกเพื่อให้ผู้ใช้เลือกไฟล์ใหม่ถ้าต้องการ
     this.isEditing = true;  // ตั้งสถานะว่าอยู่ในโหมดแก้ไข
@@ -91,6 +97,7 @@ export class ManageProductComponent implements OnInit {
 
   // ฟังก์ชันสำหรับรีเซ็ตฟอร์ม
   resetForm() {
+    console.log('Resetting form');
     this.product = {};  // เคลียร์ข้อมูลฟอร์ม
     this.selectedFile = null;  // รีเซ็ตไฟล์ที่เลือก
     this.isEditing = false;  // รีเซ็ตโหมดแก้ไข

@@ -1,65 +1,64 @@
-<div class="product-management">
-    <h2>{{ isEditing ? 'Edit Product' : 'Add New Product' }}</h2>
-    <form>
+<div class="container product-management mt-5">
+  <h2 class="mb-4">{{ isEditing ? 'Edit Product' : 'Add New Product' }}</h2>
+
+  <form>
       <div class="form-group">
-        <label>Product Name</label>
-        <input [(ngModel)]="product.name" name="productName" type="text" placeholder="Product Name" class="input-field" />
+          <label for="productName">Product Name</label>
+          <input id="productName" [(ngModel)]="product.name" name="productName" type="text" placeholder="Product Name" class="form-control" />
       </div>
       <div class="form-group">
-        <label>Category</label>
-        <input [(ngModel)]="product.category" name="category" type="text" placeholder="Category" class="input-field" />
+          <label for="category">Category</label>
+          <input id="category" [(ngModel)]="product.category" name="category" type="text" placeholder="Category" class="form-control" />
       </div>
       <div class="form-group">
-        <label>Brand</label>
-        <input [(ngModel)]="product.brand" name="brand" type="text" placeholder="Brand" class="input-field" />
+          <label for="brand">Brand</label>
+          <input id="brand" [(ngModel)]="product.brand" name="brand" type="text" placeholder="Brand" class="form-control" />
       </div>
       <div class="form-group">
-        <label>Stock</label>
-        <input [(ngModel)]="product.stock" name="stock" type="number" placeholder="Stock" class="input-field" />
+          <label for="stock">Stock</label>
+          <input id="stock" [(ngModel)]="product.stock" name="stock" type="number" placeholder="Stock" class="form-control" />
       </div>
       <div class="form-group">
-        <label>Price</label>
-        <input [(ngModel)]="product.price" name="price" type="number" placeholder="Price" class="input-field" />
+          <label for="price">Price</label>
+          <input id="price" [(ngModel)]="product.price" name="price" type="number" placeholder="Price" class="form-control" />
       </div>
       <div class="form-group">
-        <label>Description</label>
-        <textarea [(ngModel)]="product.description" name="description" placeholder="Description" class="input-field"></textarea>
+          <label for="description">Description</label>
+          <textarea id="description" [(ngModel)]="product.description" name="description" placeholder="Description" class="form-control"></textarea>
       </div>
       <div class="form-group">
-        <label>Choose File</label>
-        <input type="file" (change)="onFileSelected($event)" placeholder="Choose File" class="input-field" />
+          <label for="file">Choose File</label>
+          <input id="file" type="file" (change)="onFileSelected($event)" placeholder="Choose File" class="form-control" />
       </div>
-  
-      <button type="button" class="btn-save" (click)="saveProduct()">
-        {{ isEditing ? 'Update Product' : 'Add Product' }}
+
+      <button type="button" class="btn btn-primary mt-3" (click)="saveProduct()">
+          {{ isEditing ? 'Update Product' : 'Add Product' }}
       </button>
-    </form>
-  
-    <!-- Table to display products -->
-    <table class="product-table">
-      <thead>
-        <tr>
-          <th>Product</th>
-          <th>Category</th>
-          <th>Brand</th>
-          <th>Stock</th>
-          <th>Price</th>
-          <th>Actions</th>
-        </tr>
+  </form>
+
+  <table class="table table-striped mt-5">
+      <thead class="thead-dark">
+          <tr>
+              <th>Product</th>
+              <th>Category</th>
+              <th>Brand</th>
+              <th>Stock</th>
+              <th>Price</th>
+              <th>Actions</th>
+          </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let product of products">
-          <td>{{ product.name }}</td>
-          <td>{{ product.category }}</td>
-          <td>{{ product.brand }}</td>
-          <td>{{ product.stock }}</td>
-          <td>{{ product.price | currency }}</td>
-          <td>
-            <button class="btn-edit" (click)="editProduct(product)">Edit</button>
-            <button class="btn-delete" (click)="deleteProduct(product.id)">Delete</button>
-          </td>
-        </tr>
+          <tr *ngFor="let product of products">
+              <td>{{ product.name }}</td>
+              <td>{{ product.category }}</td>
+              <td>{{ product.brand }}</td>
+              <td>{{ product.stock }}</td>
+              <td>{{ product.price | currency }}</td>
+              <td>
+                  <button class="btn btn-info btn-sm mr-2" (click)="editProduct(product)">Edit</button>
+                  <button class="btn btn-danger btn-sm" (click)="deleteProduct(product.id)">Delete</button>
+              </td>
+          </tr>
       </tbody>
-    </table>
-  </div>
-  
+  </table>
+</div>
