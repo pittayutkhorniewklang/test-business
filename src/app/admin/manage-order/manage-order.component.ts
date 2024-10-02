@@ -4,11 +4,10 @@ import { OrderService } from '../../services/order.service';
 @Component({
   selector: 'app-manage-order',
   templateUrl: './manage-order.component.html',
-  styleUrl: './manage-order.component.css'
+  styleUrls: ['./manage-order.component.css']
 })
-export class ManageOrderComponent implements OnInit{
+export class ManageOrderComponent implements OnInit {
   orders: any[] = [];
-  searchQuery: string = ''; // กำหนดค่า searchQuery ที่จะถูกผูกกับ ngModel
 
   constructor(private orderService: OrderService) {}
 
@@ -16,21 +15,43 @@ export class ManageOrderComponent implements OnInit{
     this.loadOrders();
   }
 
-  // โหลดข้อมูลออเดอร์ทั้งหมดจาก Service
+  // ดึงข้อมูลคำสั่งซื้อทั้งหมด
   loadOrders() {
-    this.orderService.getOrders().subscribe((data) => {
-      this.orders = data;
+    this.orderService.getOrders().subscribe({
+      next: (data: any[]) => {
+        this.orders = data;
+      },
+      error: (err) => {
+        console.error('Error fetching orders:', err);
+      }
     });
   }
 
-  // ค้นหาข้อมูลออเดอร์ตาม searchQuery
-  searchOrders() {
-    this.orderService.getOrders().subscribe((data) => {
-      this.orders = data.filter((order: { customer: string; orderId: string; }) =>
-        order.customer.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
-        order.orderId.toLowerCase().includes(this.searchQuery.toLowerCase())
-      );
-    });
+  // ปฏิเสธคำสั่งซื้อ
+  rejectOrder(orderId: number) {
+    if (confirm('Are you sure you want to reject this order?')) {
+      this.orderService.rejectOrder(orderId).subscribe({
+        next: () => {
+          alert('Order rejected successfully');
+          this.loadOrders();  // โหลดข้อมูลใหม่หลังจากรีเจ็ค
+        },
+        error: (err) => {
+          console.error('Error rejecting order:', err);
+        }
+      });
+    }
   }
 
+  // อัปเดตสถานะคำสั่งซื้อ
+  updateOrder(orderId: number, deliveryStatus: string, paymentStatus: string) {
+    this.orderService.updateOrderStatus(orderId, deliveryStatus, paymentStatus).subscribe({
+      next: () => {
+        alert('Order updated successfully');
+        this.loadOrders();  // โหลดข้อมูลใหม่หลังจากอัปเดต
+      },
+      error: (err) => {
+        console.error('Error updating order:', err);
+      }
+    });
+  }
 }

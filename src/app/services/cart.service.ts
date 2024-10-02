@@ -1,31 +1,30 @@
 import { Injectable } from '@angular/core';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class CartService {
-  private items: any[] = [];  // เก็บรายการสินค้าที่เพิ่มในตะกร้า
+  items: any[] = [];  // ตัวแปรเก็บสินค้าที่อยู่ในตะกร้า
 
-  // ฟังก์ชันเพิ่มสินค้าในตะกร้า
+  constructor() {}
+
+  // ฟังก์ชันสำหรับเพิ่มสินค้าลงในตะกร้า
   addToCart(product: any) {
-    const existingProduct = this.items.find(item => item.id === product.id);  // ค้นหาสินค้าที่มีอยู่แล้วในตะกร้า
+    const existingProduct = this.items.find(item => item.id === product.id);
     if (existingProduct) {
-      existingProduct.quantity += product.quantity;  // เพิ่มจำนวนสินค้าที่มีอยู่แล้ว
+      existingProduct.quantity += product.quantity;  // ถ้าสินค้ามีอยู่แล้วในตะกร้า ให้เพิ่มจำนวนสินค้า
     } else {
-      this.items.push({ ...product, quantity: product.quantity || 1 });  // เพิ่มสินค้าใหม่ในตะกร้า พร้อมจำนวนสินค้า (ถ้าไม่มีค่า quantity ให้ใช้ 1)
+      this.items.push(product);  // ถ้าสินค้ายังไม่มี ให้เพิ่มเป็นสินค้าใหม่
     }
-    console.log('สินค้าในตะกร้าหลังเพิ่ม:', this.items);  // ตรวจสอบรายการสินค้าที่ถูกเพิ่ม
+    console.log('สินค้าถูกเพิ่มในตะกร้า:', this.items);  // แสดงสินค้าที่ถูกเพิ่มในตะกร้า
   }
-  
 
-  // ฟังก์ชันดึงสินค้าจากตะกร้า
-  getItems(): any[] {
-    console.log('Items in cart:', this.items);  // ตรวจสอบสินค้าที่อยู่ในตะกร้า
+  // ฟังก์ชันสำหรับดึงสินค้าทั้งหมดในตะกร้า
+  getItems() {
     return this.items;
   }
-  
 
-  // ฟังก์ชันล้างสินค้าทั้งหมดในตะกร้า
+  // ฟังก์ชันสำหรับล้างสินค้าทั้งหมดในตะกร้า
   clearCart() {
     this.items = [];
     return this.items;

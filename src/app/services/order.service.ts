@@ -6,19 +6,28 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class OrderService {
-  private apiUrl = 'http://localhost:3000/orders'; // เปลี่ยน URL ตามที่คุณใช้งานจริง
+  private apiUrlOrders = 'http://localhost/shop_backend/get_orders.php';  // URL สำหรับดึงคำสั่งซื้อ
+  private apiUrlRejectOrder = 'http://localhost/shop_backend/reject_order.php';  // URL สำหรับปฏิเสธคำสั่งซื้อ
+  private apiUrlUpdateOrder = 'http://localhost/shop_backend/update_order.php';  // URL สำหรับอัปเดตคำสั่งซื้อ
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
-  getOrders(): Observable<any> {
-    return this.http.get(this.apiUrl);
+  // ดึงคำสั่งซื้อทั้งหมด
+  getOrders(): Observable<any[]> {
+    return this.http.get<any[]>(this.apiUrlOrders);
   }
 
-  addOrder(order: any): Observable<any> {
-    return this.http.post(this.apiUrl, order);
+  // ปฏิเสธคำสั่งซื้อ
+  rejectOrder(orderId: number): Observable<any> {
+    return this.http.post(this.apiUrlRejectOrder, { order_id: orderId });
   }
 
-  deleteOrder(id: number): Observable<any> {
-    return this.http.delete(`${this.apiUrl}/${id}`);
+  // อัปเดตสถานะคำสั่งซื้อ
+  updateOrderStatus(orderId: number, deliveryStatus: string, paymentStatus: string): Observable<any> {
+    return this.http.put(this.apiUrlUpdateOrder, {
+      order_id: orderId,
+      delivery_status: deliveryStatus,
+      payment_status: paymentStatus
+    });
   }
 }

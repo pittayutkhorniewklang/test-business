@@ -1,64 +1,126 @@
-<div class="container product-management mt-5">
-  <h2 class="mb-4">{{ isEditing ? 'Edit Product' : 'Add New Product' }}</h2>
+<div class="product-management container">
+  <div class="header">
+    <h2>{{ isEditing ? 'Edit Product' : 'Add New Product' }}</h2>
+  </div>
+  
+  <form class="product-form" (submit)="onSubmit($event)" method="POST">
+    <div class="form-group">
+      <label for="productName">Product Name</label>
+      <input 
+        [(ngModel)]="product.name" 
+        id="productName" 
+        name="productName" 
+        type="text" 
+        placeholder="Enter Product Name" 
+        class="form-control" 
+        required />
+    </div>
 
-  <form>
-      <div class="form-group">
-          <label for="productName">Product Name</label>
-          <input id="productName" [(ngModel)]="product.name" name="productName" type="text" placeholder="Product Name" class="form-control" />
-      </div>
-      <div class="form-group">
-          <label for="category">Category</label>
-          <input id="category" [(ngModel)]="product.category" name="category" type="text" placeholder="Category" class="form-control" />
-      </div>
-      <div class="form-group">
-          <label for="brand">Brand</label>
-          <input id="brand" [(ngModel)]="product.brand" name="brand" type="text" placeholder="Brand" class="form-control" />
-      </div>
-      <div class="form-group">
-          <label for="stock">Stock</label>
-          <input id="stock" [(ngModel)]="product.stock" name="stock" type="number" placeholder="Stock" class="form-control" />
-      </div>
-      <div class="form-group">
-          <label for="price">Price</label>
-          <input id="price" [(ngModel)]="product.price" name="price" type="number" placeholder="Price" class="form-control" />
-      </div>
-      <div class="form-group">
-          <label for="description">Description</label>
-          <textarea id="description" [(ngModel)]="product.description" name="description" placeholder="Description" class="form-control"></textarea>
-      </div>
-      <div class="form-group">
-          <label for="file">Choose File</label>
-          <input id="file" type="file" (change)="onFileSelected($event)" placeholder="Choose File" class="form-control" />
-      </div>
+    <div class="form-group">
+      <label for="category">Category</label>
+      <input 
+        [(ngModel)]="product.category" 
+        id="category" 
+        name="category" 
+        type="text" 
+        placeholder="Enter Category" 
+        class="form-control" 
+        required />
+    </div>
 
-      <button type="button" class="btn btn-primary mt-3" (click)="saveProduct()">
-          {{ isEditing ? 'Update Product' : 'Add Product' }}
+    <div class="form-group">
+      <label for="brand">Brand</label>
+      <input 
+        [(ngModel)]="product.brand" 
+        id="brand" 
+        name="brand" 
+        type="text" 
+        placeholder="Enter Brand" 
+        class="form-control" 
+        required />
+    </div>
+
+    <div class="form-group">
+      <label for="stock">Stock</label>
+      <input 
+        [(ngModel)]="product.stock" 
+        id="stock" 
+        name="stock" 
+        type="number" 
+        placeholder="Enter Stock" 
+        class="form-control" 
+        required />
+    </div>
+
+    <div class="form-group">
+      <label for="price">Price</label>
+      <input 
+        [(ngModel)]="product.price" 
+        id="price" 
+        name="price" 
+        type="number" 
+        placeholder="Enter Price" 
+        class="form-control" 
+        required />
+    </div>
+
+    <div class="form-group">
+      <label for="description">Description</label>
+      <textarea 
+        [(ngModel)]="product.description" 
+        id="description" 
+        name="description" 
+        placeholder="Enter Product Description" 
+        class="form-control" 
+        rows="4" 
+        required></textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="file">Choose File</label>
+      <input 
+        type="file" 
+        id="file" 
+        (change)="onFileSelected($event)" 
+        class="form-control-file" />
+    </div>
+
+    <div class="form-actions">
+      <button type="submit" class="btn btn-primary">
+        {{ isEditing ? 'Update Product' : 'Add Product' }}
       </button>
+    </div>
   </form>
 
-  <table class="table table-striped mt-5">
+  <hr>
+
+  <!-- Table to display products -->
+  <div class="product-list">
+    <h3>Product List</h3>
+    <table class="table table-striped">
       <thead class="thead-dark">
-          <tr>
-              <th>Product</th>
-              <th>Category</th>
-              <th>Brand</th>
-              <th>Stock</th>
-              <th>Price</th>
-              <th>Actions</th>
-          </tr>
+        <tr>
+          <th>Product</th>
+          <th>Category</th>
+          <th>Brand</th>
+          <th>Stock</th>
+          <th>Price</th>
+          <th>Actions</th>
+        </tr>
       </thead>
       <tbody>
-          <tr *ngFor="let product of products">
-              <td>{{ product.name }}</td>
-              <td>{{ product.category }}</td>
-              <td>{{ product.brand }}</td>
-              <td>{{ product.stock }}</td>
-              <td>{{ product.price | currency }}</td>
-              <td>
-                  <button class="btn btn-info btn-sm mr-2" (click)="editProduct(product)">Edit</button>
-                  <button class="btn btn-danger btn-sm" (click)="deleteProduct(product.id)">Delete</button>
-              </td>
-          </tr>
+        <tr *ngFor="let product of products">
+          <td>{{ product.name }}</td>
+          <td>{{ product.category }}</td>
+          <td>{{ product.brand }}</td>
+          <td>{{ product.stock }}</td>
+          <td>{{ product.price | currency }}</td>
+          <td>
+            <button class="btn btn-warning btn-sm" (click)="editProduct(product)">Edit</button>
+            <button class="btn btn-danger btn-sm" (click)="deleteProduct(product.id)">Delete</button>
+          </td>
+        </tr>
       </tbody>
-  </table>
+    </table>
+  </div>
 </div>

@@ -1,33 +1,13 @@
-.search-bar {
-    margin: 20px 0;
-    display: flex;
-    justify-content: flex-start;
-  }
-  
-  .search-bar input {
-    width: 200px;
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-  }
-  
-  .order-table {
-    width: 100%;
-    border-collapse: collapse;
-  }
-  
-  .order-table th, .order-table td {
-    padding: 12px;
-    text-align: left;
-    border: 1px solid #ddd;
-  }
-  
-  .order-table th {
-    background-color: #f4f4f4;
-    font-weight: bold;
-  }
-  
-  .order-table tr:hover {
-    background-color: #f1f1f1;
-  }
-  
+/* CSS สำหรับจัดการสไตล์ของหน้าจัดการออเดอร์ */
+.table {
+  width: 100%;
+  margin-top: 20px;
+}
+
+.btn-success {
+  margin-right: 10px;
+}
+
+.btn-danger {
+  margin-left: 10px;
+}

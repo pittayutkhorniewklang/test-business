@@ -1,29 +1,51 @@
-<div class="search-bar">
-    <input type="text" [(ngModel)]="searchQuery" placeholder="search" (input)="searchOrders()" />
-  </div>
+<div class="container mt-4">
+  <h3 class="text-center mb-4">Manage Orders</h3>
   
-  <table class="order-table">
-    <thead>
+  <table class="table table-bordered table-hover text-center">
+    <thead class="thead-dark">
       <tr>
         <th>Order ID</th>
         <th>Customer</th>
-        <th>Order</th>
+        <th>Order Items</th>
         <th>Delivery Date</th>
-        <th>Delivery Pricing</th>
+        <th>Delivery Price</th>
         <th>Delivery Status</th>
-        <th>Payment</th>
+        <th>Payment Status</th>
+        <th>Actions</th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let order of orders">
-        <td>{{ order.orderId }}</td>
-        <td>{{ order.customer }}</td>
-        <td>{{ order.order }}</td>
-        <td>{{ order.deliveryDate }}</td>
-        <td>{{ order.deliveryPricing }}</td>
-        <td>{{ order.deliveryStatus }}</td>
-        <td>{{ order.payment }}</td>
+      <tr *ngFor="let order of orders" class="align-middle">
+        <td>{{ order.id }}</td>
+        <td>{{ order.customer_name }}</td>
+        <td>{{ order.order_items }}</td>
+        <td>{{ order.delivery_date }}</td>
+        <td>{{ order.delivery_price | currency:'THB':'symbol':'1.0-0' }}</td>
+        <td>
+          <select class="form-control" [(ngModel)]="order.delivery_status">
+            <option value="pending">Pending</option>
+            <option value="shipped">Shipped</option>
+            <option value="delivered">Delivered</option>
+            <option value="cancelled">Cancelled</option>
+          </select>
+        </td>
+        <td>
+          <select class="form-control" [(ngModel)]="order.payment_status">
+            <option value="unpaid">Unpaid</option>
+            <option value="paid">Paid</option>
+          </select>
+        </td>
+        <td>
+          <div class="d-flex justify-content-around">
+            <button class="btn btn-success btn-sm" (click)="updateOrder(order.id, order.delivery_status, order.payment_status)">
+              <i class="fas fa-save"></i> Update
+            </button>
+            <button class="btn btn-danger btn-sm" (click)="rejectOrder(order.id)">
+              <i class="fas fa-times"></i> Reject
+            </button>
+          </div>
+        </td>
       </tr>
     </tbody>
   </table>
-  
+</div>

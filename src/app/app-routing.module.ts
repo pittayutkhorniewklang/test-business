@@ -35,10 +35,10 @@ const routes: Routes = [
   {path:'original',component:OriginalComponent},
   {path:'cart',component:CartComponent},
   
-  {path:'dashboard',component:DashboardComponent},
+  {path:'admin/dashboard',component:DashboardComponent},
   {path:'sidebar',component:SidebarComponent},
-  {path:'dashboard/manage-product',component:ManageProductComponent},
-  {path:'dashboard/manage-order',component:ManageOrderComponent},
+  {path:'admin/dashboard/manage-product',component:ManageProductComponent},
+  {path:'admin/dashboard/manage-order',component:ManageOrderComponent},
 ];
 
 @NgModule({
