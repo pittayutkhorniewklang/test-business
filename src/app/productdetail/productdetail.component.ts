@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core'; 
 import { ActivatedRoute } from '@angular/router';
 import { ProductService } from '../services/product.service';
+import { CartService } from '../services/cart.service';  // เพิ่ม CartService
 
 @Component({
   selector: 'app-productdetail',
@@ -13,7 +14,8 @@ export class ProductDetailComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,  // ใช้ ActivatedRoute เพื่อดึงพารามิเตอร์จาก URL
-    private productService: ProductService  // ใช้บริการ ProductService เพื่อดึงข้อมูลสินค้า
+    private productService: ProductService,  // ใช้บริการ ProductService เพื่อดึงข้อมูลสินค้า
+    private cartService: CartService  // เพิ่ม CartService
   ) {}
 
   ngOnInit(): void {
@@ -53,6 +55,7 @@ export class ProductDetailComponent implements OnInit {
   // ฟังก์ชันสำหรับเพิ่มสินค้าไปยังตะกร้า
   addToCart() {
     const productToAdd = { ...this.product, quantity: this.quantity };
+    this.cartService.addToCart(productToAdd);  // เพิ่มสินค้าลงในตะกร้า
     alert('Added to cart!');
   }
 

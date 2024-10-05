@@ -1,33 +1,33 @@
-import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class OrderService {
-  private apiUrlOrders = 'http://localhost/shop_backend/get_orders.php';  // URL สำหรับดึงคำสั่งซื้อ
-  private apiUrlRejectOrder = 'http://localhost/shop_backend/reject_order.php';  // URL สำหรับปฏิเสธคำสั่งซื้อ
-  private apiUrlUpdateOrder = 'http://localhost/shop_backend/update_order.php';  // URL สำหรับอัปเดตคำสั่งซื้อ
+
+  private apiUrl = 'http://localhost:3000/orders'; // URL ของ API
 
   constructor(private http: HttpClient) {}
 
-  // ดึงคำสั่งซื้อทั้งหมด
+  // ฟังก์ชันสำหรับสร้างคำสั่งซื้อใหม่
+  createOrder(order: any): Observable<any> {
+    return this.http.post<any>(`${this.apiUrl}/create`, order);
+  }
+
+  // ฟังก์ชันสำหรับดึงข้อมูลคำสั่งซื้อทั้งหมด (สำหรับหน้า Manage Orders)
   getOrders(): Observable<any[]> {
-    return this.http.get<any[]>(this.apiUrlOrders);
+    return this.http.get<any[]>(this.apiUrl);
   }
 
-  // ปฏิเสธคำสั่งซื้อ
-  rejectOrder(orderId: number): Observable<any> {
-    return this.http.post(this.apiUrlRejectOrder, { order_id: orderId });
-  }
-
-  // อัปเดตสถานะคำสั่งซื้อ
+  // ฟังก์ชันสำหรับอัปเดตสถานะคำสั่งซื้อ
   updateOrderStatus(orderId: number, deliveryStatus: string, paymentStatus: string): Observable<any> {
-    return this.http.put(this.apiUrlUpdateOrder, {
-      order_id: orderId,
-      delivery_status: deliveryStatus,
-      payment_status: paymentStatus
-    });
+    return this.http.put<any>(`${this.apiUrl}/update/${orderId}`, { deliveryStatus, paymentStatus });
+  }
+
+  // ฟังก์ชันสำหรับรีเจ็คคำสั่งซื้อ
+  rejectOrder(orderId: number): Observable<any> {
+    return this.http.delete<any>(`${this.apiUrl}/delete/${orderId}`);
   }
 }
