@@ -13,13 +13,10 @@ export class CartComponent implements OnInit {
   constructor(private cartService: CartService) {}
 
   ngOnInit(): void {
-
-    
-    // ดึงรายการสินค้าในตะกร้ามาแสดง
     this.items = this.cartService.getItems();
-    this.calculateTotal();  // คำนวณยอดรวมเมื่อเริ่มต้น
+    console.log(this.items);  // ตรวจสอบว่ารายการสินค้าในตะกร้าถูกต้องหรือไม่
+    this.calculateTotal();
   }
-
   // ฟังก์ชันสำหรับลดจำนวนสินค้า
   decrementQuantity(item: any) {
     if (item.quantity > 1) {
@@ -32,6 +29,15 @@ export class CartComponent implements OnInit {
   incrementQuantity(item: any) {
     item.quantity++;
     this.calculateTotal();  // คำนวณยอดรวมใหม่หลังจากการเปลี่ยนแปลง
+  }
+
+  // ฟังก์ชันสำหรับลบสินค้าออกจากตะกร้า
+  removeItem(item: any) {
+    const index = this.items.indexOf(item);
+    if (index > -1) {
+      this.items.splice(index, 1);  // ลบสินค้าจากตะกร้า
+      this.calculateTotal();  // คำนวณยอดรวมใหม่หลังจากการลบ
+    }
   }
 
   // ฟังก์ชันสำหรับคำนวณยอดรวม

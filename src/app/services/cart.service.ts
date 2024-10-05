@@ -4,24 +4,29 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class CartService {
-  private cart: any[] = [];  // ตัวแปรเก็บสินค้าในตะกร้า
+  items: any[] = [];  // เก็บรายการสินค้าในตะกร้า
 
   constructor() {}
 
-  // ฟังก์ชันสำหรับเพิ่มสินค้าไปยังตะกร้า
-  addToCart(product: any) {
-    this.cart.push(product);
-    console.log('Product added to cart:', product);  // ตรวจสอบว่าการเพิ่มสินค้าทำงาน
+  // ฟังก์ชันสำหรับดึงรายการสินค้าในตะกร้า
+  getItems() {
+    return this.items;
   }
 
-  // ฟังก์ชันสำหรับดึงรายการสินค้าจากตะกร้า
-  getItems() {
-    return this.cart;  // ส่งกลับรายการสินค้าในตะกร้า
+  // ฟังก์ชันสำหรับเพิ่มสินค้าในตะกร้า
+  addToCart(product: any) {
+    const existingProduct = this.items.find(item => item._id === product._id);
+    if (existingProduct) {
+      existingProduct.quantity += product.quantity;  // ถ้าสินค้ามีอยู่แล้ว ให้เพิ่มจำนวน
+    } else {
+      this.items.push(product);  // ถ้าไม่มีสินค้าอยู่ในตะกร้า ให้เพิ่มเข้าไปใหม่
+    }
+    console.log(this.items);  // ตรวจสอบว่าสินค้าอยู่ในตะกร้าหรือไม่
   }
 
   // ฟังก์ชันสำหรับล้างตะกร้า
   clearCart() {
-    this.cart = [];  // ล้างสินค้าทั้งหมดในตะกร้า
-    return this.cart;  // ส่งกลับตะกร้าว่าง
+    this.items = [];
+    return this.items;
   }
 }

@@ -1,63 +1,61 @@
-@import url('https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-.font{
-    font-family: 'poppins','Kanit';
+@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;600&family=Poppins:wght@400;500;600&display=swap');
+
+.font {
+  font-family: 'Poppins', 'Kanit';
 }
+
 .custom-navbar {
-    background-color: #EAC4C4 !important;
-  }
-  .btn-color {
-    background-color: #A04747;
-  }
-  .custom-search {
-    margin-left: 20px;
-    width: 500px; /* Adjust the width as needed */
-  }
-  .btn-outline {
-    font-weight: 100;
-    border-color: #000000;
-    color: aliceblue;
-    margin-left: 10px;
-  }
-  .login-space{
-    margin-left: 100px;
-  }
-  .navbardeco{
-    font-weight: 50;
-  }
-  .cart-deco{
-    margin-left: 10px;
-    size: 100px;
-    margin-bottom: 5px;
-  }
-  .welcome-deco{
-    margin-top: 50px;
-  }
-  .navbar-text{ 
-    color: white ;
-    font-weight: bold;
-    font-family: 'poppins','Kanit';
-    
-  }
-  .justify-content-center{
-    justify-content: center;
-  }
-  .d-flex{
-    display: flex;
-  }
-  .card-btn{
-    align-items: center;
-  }
-  .dropdown-menu{
-    background-color:rgb(209, 230, 223);
-    border-color: rgb(209, 230, 223);
-    padding: 5px 10px;
-  }
+  background-color: #EAC4C4 !important;
+}
 
-  
-  .nav-item{
-    color: white !important;
-    font-weight: bold !important;
-    font-family: 'poppins','Kanit' !important;
-    font-size: 16px;
+.btn-color {
+  background-color: #A04747;
+}
 
-  }
+.custom-search {
+  margin-left: 20px;
+  width: 500px;
+}
+
+.btn-outline {
+  font-weight: 100;
+  border-color: #000000;
+  color: aliceblue;
+  margin-left: 10px;
+}
+
+.login-space {
+  margin-left: 100px;
+}
+
+.navbardeco {
+  font-weight: 50;
+}
+
+.cart-deco {
+  margin-left: 10px;
+  margin-bottom: 5px;
+}
+
+.navbar-text {
+  color: white;
+  font-weight: bold;
+  font-family: 'Poppins', 'Kanit';
+}
+
+.d-flex {
+  display: flex;
+}
+
+.dropdown-menu {
+  background-color: rgb(209, 230, 223);
+  border-color: rgb(209, 230, 223);
+  padding: 5px 10px;
+}
+
+.nav-item {
+  color: white !important;
+  font-weight: bold !important;
+  font-family: 'Poppins', 'Kanit' !important;
+  font-size: 16px;
+}

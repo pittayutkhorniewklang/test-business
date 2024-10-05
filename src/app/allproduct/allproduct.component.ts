@@ -43,10 +43,9 @@ export class AllProductComponent implements OnInit {
 
   // ฟังก์ชันสำหรับเพิ่มสินค้าไปยังตะกร้า
   addToCart(product: any) {
-    console.log('เพิ่มสินค้าในตะกร้า:', product);  // ตรวจสอบว่าฟังก์ชันถูกเรียกใช้งาน
+    console.log('ปุ่มถูกกด, สินค้าที่ถูกส่ง:', product);  // ตรวจสอบว่าฟังก์ชันถูกเรียกเมื่อกดปุ่ม
     const productToAdd = { ...product, quantity: 1 };
-    this.cartService.addToCart(productToAdd);  // เรียก CartService เพื่อเพิ่มสินค้าในตะกร้า
-    alert('เพิ่มสินค้าลงในตะกร้าแล้ว!');
-    this.router.navigate(['/cart']);  // นำทางไปยังหน้าตะกร้า
+    this.cartService.addToCart(productToAdd);
+    console.log('สินค้าถูกเพิ่มในตะกร้า');
   }
 }
