@@ -6,23 +6,23 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class DashboardService {
-  private apiUrl = 'https://your-api-url.com/api'; // ปรับ URL ของ API ให้ถูกต้อง
+  private apiUrl = 'http://localhost:3000/dashboard'; // URL ของ API
 
   constructor(private http: HttpClient) {}
 
   getTotalSales(): Observable<any> {
-    return this.http.get(`${this.apiUrl}/totalsales`); // ตัวอย่าง URL สำหรับดึงยอดขายรวม
+    return this.http.get<any>(`${this.apiUrl}/total-sales`);
   }
 
   getNewOrders(): Observable<any> {
-    return this.http.get(`${this.apiUrl}/neworders`); // ตัวอย่าง URL สำหรับดึงจำนวนออเดอร์ใหม่
+    return this.http.get<any>(`${this.apiUrl}/new-orders`);
   }
 
   getActiveUsers(): Observable<any> {
-    return this.http.get(`${this.apiUrl}/activeusers`); // ตัวอย่าง URL สำหรับดึงจำนวนผู้ใช้งานที่ยังคงใช้งาน
+    return this.http.get<any>(`${this.apiUrl}/active-users`);
   }
 
   getRevenue(): Observable<any> {
-    return this.http.get(`${this.apiUrl}/revenue`); // ตัวอย่าง URL สำหรับดึงรายได้รวม
+    return this.http.get<any>(`${this.apiUrl}/revenue`);
   }
 }

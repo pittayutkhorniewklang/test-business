@@ -16,18 +16,22 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
     this.dashboardService.getTotalSales().subscribe(data => {
+      console.log('Total Sales Data:', data);  // Log ข้อมูล
       this.totalSales = data.totalSales;
     });
-
+  
     this.dashboardService.getNewOrders().subscribe(data => {
+      console.log('New Orders Data:', data);  // Log ข้อมูล
       this.newOrders = data.newOrders;
     });
-
+  
     this.dashboardService.getActiveUsers().subscribe(data => {
+      console.log('Active Users Data:', data);  // Log ข้อมูล
       this.activeUsers = data.activeUsers;
     });
-
+  
     this.dashboardService.getRevenue().subscribe(data => {
+      console.log('Revenue Data:', data);  // Log ข้อมูล
       this.revenue = data.totalRevenue;
     });
   }
