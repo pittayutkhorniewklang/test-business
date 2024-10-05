@@ -7,7 +7,7 @@
         <th>Order ID</th>
         <th>Customer</th>
         <th>Order Items</th>
-        <th>Delivery Date</th>
+        <th>Total Item Price</th> <!-- คอลัมน์สำหรับแสดงราคาสินค้า -->
         <th>Delivery Price</th>
         <th>Delivery Status</th>
         <th>Payment Status</th>
@@ -18,9 +18,27 @@
       <tr *ngFor="let order of orders" class="align-middle">
         <td>{{ order.id }}</td>
         <td>{{ order.customer_name }}</td>
-        <td>{{ order.order_items }}</td>
-        <td>{{ order.delivery_date }}</td>
+
+        <!-- แสดงรายการสินค้าและจำนวน -->
+        <td>
+          <ul>
+            <li *ngFor="let item of order.order_items">
+              {{ item.name }} - {{ item.quantity }} pcs
+            </li>
+          </ul>
+        </td>
+
+        <!-- แสดงราคาสินค้าทั้งหมดในคำสั่งซื้อ -->
+        <td>
+          <ul>
+            <li *ngFor="let item of order.order_items">
+              {{ item.price * item.quantity | currency:'THB':'symbol':'1.0-0' }} <!-- คำนวณราคารวมต่อชิ้น -->
+            </li>
+          </ul>
+        </td>
+
         <td>{{ order.delivery_price | currency:'THB':'symbol':'1.0-0' }}</td>
+
         <td>
           <select class="form-control" [(ngModel)]="order.delivery_status">
             <option value="pending">Pending</option>
@@ -29,20 +47,23 @@
             <option value="cancelled">Cancelled</option>
           </select>
         </td>
+
         <td>
           <select class="form-control" [(ngModel)]="order.payment_status">
             <option value="unpaid">Unpaid</option>
             <option value="paid">Paid</option>
           </select>
         </td>
+
         <td>
           <div class="d-flex justify-content-around">
             <button class="btn btn-success btn-sm" (click)="updateOrder(order.id, order.delivery_status, order.payment_status)">
               <i class="fas fa-save"></i> Update
-            </button>
-            <button class="btn btn-danger btn-sm" (click)="rejectOrder(order.id)">
+          </button>
+          <button class="btn btn-danger btn-sm" (click)="rejectOrder(order.id)">
               <i class="fas fa-times"></i> Reject
-            </button>
+          </button>
+            
           </div>
         </td>
       </tr>
