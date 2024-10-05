@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ProductService } from '../../services/productservice.service';
+import { ProductService } from '../../services/product.service';
 
 @Component({
   selector: 'app-manage-product',
@@ -8,7 +8,7 @@ import { ProductService } from '../../services/productservice.service';
 })
 export class ManageProductComponent implements OnInit {
 
-  products: any[] = [];
+  products: any[] = [];  // เก็บสินค้าทั้งหมด
   product: any = {};  // เก็บข้อมูลสินค้าใหม่หรือสินค้าแก้ไข
   selectedFile: File | null = null;  // เก็บไฟล์ที่ถูกเลือก
   isEditing: boolean = false;  // ตรวจสอบว่าอยู่ในโหมดแก้ไขหรือไม่
@@ -16,13 +16,14 @@ export class ManageProductComponent implements OnInit {
   constructor(private productService: ProductService) {}
 
   ngOnInit(): void {
-    this.loadProducts();
+    this.loadProducts();  // โหลดสินค้าทั้งหมดเมื่อเริ่มต้น
   }
 
   // ฟังก์ชันสำหรับโหลดสินค้าทั้งหมด
   loadProducts() {
     this.productService.getProducts().subscribe(
       (data) => {
+        console.log('Products fetched:', data);  // ตรวจสอบว่ามีข้อมูลถูกดึงมาหรือไม่
         this.products = data;
       },
       (error) => {
@@ -40,48 +41,35 @@ export class ManageProductComponent implements OnInit {
   // ฟังก์ชันสำหรับบันทึกการเพิ่มหรือแก้ไขสินค้า
   onSubmit(event: Event) {
     event.preventDefault();
-    
-    // ตรวจสอบว่าชื่อสินค้าและรายละเอียดอื่นๆ ถูกต้องก่อนส่ง
+
     if (!this.product.name || !this.product.category || !this.product.price) {
       console.error('Please fill out all required fields.');
       return;
     }
 
-    const formData = new FormData();
-    formData.append('name', this.product.name);
-    formData.append('category', this.product.category);
-    formData.append('brand', this.product.brand);
-    formData.append('stock', this.product.stock.toString());
-    formData.append('price', this.product.price.toString());
-    formData.append('description', this.product.description);
-    
-    this.productService.addProduct(formData).subscribe(
-      (response) => {
-        console.log("Product added successfully:", response);
-      },
-      (error) => {
-        console.error("Error adding product:", error);
-      }
-    );
-    
-    if (this.selectedFile) {
-      formData.append('file', this.selectedFile);  // ถ้ามีไฟล์ให้เพิ่มใน FormData
-    }
+    // ใช้ JSON ธรรมดาแทนการใช้ FormData
+    const productData = {
+      name: this.product.name,
+      category: this.product.category,
+      brand: this.product.brand,
+      stock: this.product.stock,
+      price: this.product.price,
+      description: this.product.description
+    };
 
-    console.log('Submitting form data:', formData); // แสดงข้อมูลใน console
+    console.log('Product data being sent:', productData);  // ตรวจสอบข้อมูลที่ส่งออก
 
     if (this.isEditing) {
-      // กรณีแก้ไขสินค้า
-      formData.append('id', this.product.id);  // แนบ ID สำหรับการแก้ไข
-      this.productService.editProduct(formData).subscribe(() => {
+      this.productService.editProduct(this.product._id, productData).subscribe(() => {
+        console.log('Product edited successfully!');
         this.loadProducts();  // โหลดสินค้าทั้งหมดใหม่หลังจากแก้ไขสำเร็จ
         this.resetForm();  // รีเซ็ตข้อมูลฟอร์ม
       }, (error) => {
         console.error('Error editing product:', error);
       });
     } else {
-      // กรณีเพิ่มสินค้าใหม่
-      this.productService.addProduct(formData).subscribe(() => {
+      this.productService.addProduct(productData).subscribe(() => {
+        console.log('Product added successfully!');
         this.loadProducts();  // โหลดสินค้าทั้งหมดใหม่หลังจากเพิ่มสำเร็จ
         this.resetForm();  // รีเซ็ตข้อมูลฟอร์ม
       }, (error) => {
@@ -91,10 +79,10 @@ export class ManageProductComponent implements OnInit {
   }
 
   // ฟังก์ชันสำหรับลบสินค้า
-  deleteProduct(id: number) {
+  deleteProduct(id: string) {
     if (confirm('Are you sure you want to delete this product?')) {
       this.productService.deleteProduct(id).subscribe(() => {
-        this.loadProducts();
+        this.loadProducts();  // โหลดสินค้าทั้งหมดใหม่หลังจากลบสำเร็จ
       }, (error) => {
         console.error('Error deleting product:', error);
       });

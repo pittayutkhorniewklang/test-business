@@ -13,7 +13,7 @@ import { AllProductComponent } from './allproduct/allproduct.component';
 import { KidsComponent } from './kids/kids.component';
 import { SprunchieComponent } from './sprunchie/sprunchie.component';
 import { OriginalComponent } from './original/original.component';
-import { ProductdetailComponent } from './productdetail/productdetail.component';
+
 import { AuthService } from '../../auth.service';
 import { CartComponent } from './cart/cart.component';
 import { HttpClientModule } from '@angular/common/http';
@@ -21,6 +21,7 @@ import { ManageProductComponent } from './admin/manage-product/manage-product.co
 import { SidebarComponent } from './admin/sidebar/sidebar.component';
 import { DashboardComponent } from './admin/dashboard/dashboard.component';
 import { ManageOrderComponent } from './admin/manage-order/manage-order.component';
+import { ProductDetailComponent } from './productdetail/productdetail.component';
 
 
 
@@ -37,7 +38,7 @@ import { ManageOrderComponent } from './admin/manage-order/manage-order.componen
     KidsComponent,
     SprunchieComponent,
     OriginalComponent,
-    ProductdetailComponent,
+    ProductDetailComponent,
     CartComponent,
     ManageProductComponent,
     SidebarComponent,

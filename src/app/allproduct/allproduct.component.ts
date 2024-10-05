@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ProductService } from '../services/productservice.service';
+import { ProductService } from '../services/product.service';
 import { CartService } from '../services/cart.service';
 import { Router } from '@angular/router'; // เพิ่มการ import Router
 
@@ -36,14 +36,17 @@ export class AllProductComponent implements OnInit {
     this.filteredProducts = this.products.filter(product => 
       product.category && product.category.includes('allproduct')
     );
+
+    // ถ้าต้องการแสดงสินค้าทั้งหมด ให้ลบเงื่อนไขการกรองออกหรือทำแบบนี้:
+    // this.filteredProducts = this.products; // แสดงสินค้าทั้งหมด
   }
 
   // ฟังก์ชันสำหรับเพิ่มสินค้าไปยังตะกร้า
   addToCart(product: any) {
-    const productToAdd = { ...product, quantity: 1 };  // กำหนดค่าเริ่มต้นให้ quantity เป็น 1
-    console.log('Product added to cart:', productToAdd);  // ตรวจสอบว่าสินค้าที่ถูกเพิ่มมีข้อมูลครบถ้วนหรือไม่
-    this.cartService.addToCart(productToAdd);  // เรียกใช้ CartService เพื่อเพิ่มสินค้าไปยังตะกร้า
+    console.log('เพิ่มสินค้าในตะกร้า:', product);  // ตรวจสอบว่าฟังก์ชันถูกเรียกใช้งาน
+    const productToAdd = { ...product, quantity: 1 };
+    this.cartService.addToCart(productToAdd);  // เรียก CartService เพื่อเพิ่มสินค้าในตะกร้า
     alert('เพิ่มสินค้าลงในตะกร้าแล้ว!');
-    this.router.navigate(['/cart']);  // เพิ่มการนำทางไปหน้า cart หลังจากเพิ่มสินค้า
+    this.router.navigate(['/cart']);  // นำทางไปยังหน้าตะกร้า
   }
 }

@@ -1,8 +1,8 @@
 import { TestBed } from '@angular/core/testing';
 
-import { ProductService } from './productservice.service';
+import { ProductService } from './product.service';
 
-describe('ProductserviceService', () => {
+describe('ProductService', () => {
   let service: ProductService;
 
   beforeEach(() => {
