@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { OrderService } from '../../services/order.service';
+import { OrderService } from '../../services/order.service';  // นำเข้า OrderService
 
 @Component({
   selector: 'app-manage-order',
@@ -12,10 +12,10 @@ export class ManageOrderComponent implements OnInit {
   constructor(private orderService: OrderService) {}
 
   ngOnInit(): void {
-    this.loadOrders();
+    this.loadOrders();  // ดึงข้อมูลคำสั่งซื้อเมื่อ Component โหลด
   }
 
-  // ดึงข้อมูลคำสั่งซื้อทั้งหมด
+  // ฟังก์ชันดึงคำสั่งซื้อทั้งหมด
   loadOrders() {
     this.orderService.getOrders().subscribe({
       next: (data: any[]) => {
@@ -27,31 +27,31 @@ export class ManageOrderComponent implements OnInit {
     });
   }
 
-  // ปฏิเสธคำสั่งซื้อ
-  rejectOrder(orderId: number) {
-    if (confirm('Are you sure you want to reject this order?')) {
+  // ฟังก์ชันสำหรับอัปเดตสถานะคำสั่งซื้อ
+  updateOrder(orderId: number, deliveryStatus: string, paymentStatus: string) {  // เปลี่ยนเป็น number
+    this.orderService.updateOrderStatus(orderId, deliveryStatus, paymentStatus).subscribe({
+      next: () => {
+        alert('อัปเดตคำสั่งซื้อสำเร็จ!');
+        this.loadOrders();  // รีโหลดคำสั่งซื้อใหม่หลังจากอัปเดตสำเร็จ
+      },
+      error: (err) => {
+        console.error('Error updating order:', err);
+      }
+    });
+  }
+
+  // ฟังก์ชันสำหรับรีเจ็คคำสั่งซื้อ
+  rejectOrder(orderId: number) {  // เปลี่ยนเป็น number
+    if (confirm('คุณต้องการรีเจ็คคำสั่งซื้อใช่หรือไม่?')) {
       this.orderService.rejectOrder(orderId).subscribe({
         next: () => {
-          alert('Order rejected successfully');
-          this.loadOrders();  // โหลดข้อมูลใหม่หลังจากรีเจ็ค
+          alert('รีเจ็คคำสั่งซื้อสำเร็จ');
+          this.loadOrders();  // รีโหลดคำสั่งซื้อใหม่หลังจากรีเจ็คสำเร็จ
         },
         error: (err) => {
           console.error('Error rejecting order:', err);
         }
       });
     }
-  }
-
-  // อัปเดตสถานะคำสั่งซื้อ
-  updateOrder(orderId: number, deliveryStatus: string, paymentStatus: string) {
-    this.orderService.updateOrderStatus(orderId, deliveryStatus, paymentStatus).subscribe({
-      next: () => {
-        alert('Order updated successfully');
-        this.loadOrders();  // โหลดข้อมูลใหม่หลังจากอัปเดต
-      },
-      error: (err) => {
-        console.error('Error updating order:', err);
-      }
-    });
   }
 }

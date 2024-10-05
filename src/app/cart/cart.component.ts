@@ -72,7 +72,8 @@ export class CartComponent implements OnInit {
     this.orderService.createOrder(order).subscribe({
       next: () => {
         alert('คำสั่งซื้อสำเร็จ!');
-        this.router.navigate(['/admin/manage-order']);  // เปลี่ยนเส้นทางไปยังหน้า Manage Orders ของ Admin
+        this.clearCart();  // ล้างตะกร้าหลังสั่งซื้อเสร็จ
+        this.router.navigate(['/admin/dashboard/manage-order']);  // เปลี่ยนเส้นทางไปยังหน้า Manage Orders ของ Admin
       },
       error: (err) => {
         console.error('เกิดข้อผิดพลาดในการสั่งซื้อ:', err);
